@@ -16,7 +16,7 @@
 ;; (global-hl-line-mode -1)
 
 ;; make the cursor blinking
-;; (blink-cursor-mode t)
+(blink-cursor-mode t)
 (setq ring-bell-function (lambda ()))
 
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
