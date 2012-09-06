@@ -32,3 +32,14 @@
 
 ;; Fix large projects with projectile
 (setq projectile-enable-caching t)
+
+;; Only highlight characters longer than 80 characters
+(setq whitespace-style (quote (face tabs spaces trailing lines-tail space-before-tab newline indentation empty space-after-tab space-mark tab-mark newline-mark)))
+
+;; Choose font-face for lines longer than 80 characters
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(whitespace-line ((t (:background "gray20" :foreground nil)))))
