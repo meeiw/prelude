@@ -43,3 +43,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(whitespace-line ((t (:background "gray20" :foreground nil)))))
+
+;; Remove auto-fill-mode for html
+(add-hook 'html-mode-hook '(lambda () (auto-fill-mode 0)))
