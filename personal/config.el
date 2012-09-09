@@ -45,5 +45,8 @@
 ;; Remove auto-fill-mode for html
 (add-hook 'html-mode-hook '(lambda () (auto-fill-mode 0)))
 
+;; git integration
+(add-to-list 'auto-mode-alist '("COMMIT_EDITMSG$" . diff-mode))
+
 ;; Output a message to show that file is loaded
 (message "Local config.el loaded")
