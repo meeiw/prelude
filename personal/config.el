@@ -14,7 +14,6 @@
 
 ;; disable line highlight
 ;; (global-hl-line-mode -1)
-
 ;; make the cursor blinking
 (blink-cursor-mode t)
 (setq ring-bell-function (lambda ()))
@@ -28,7 +27,6 @@
 (global-set-key (kbd "C->") 'mark-next-like-this)
 (global-set-key (kbd "C-M-m") 'mark-more-like-this) ; like the other two, but takes an argument (negative is previous)
 (global-set-key (kbd "C-*") 'mark-all-like-this)
-(global-set-key (kbd "C-.") 'repeat)
 
 ;; Fix large projects with projectile
 (setq projectile-enable-caching t)
@@ -46,3 +44,6 @@
 
 ;; Remove auto-fill-mode for html
 (add-hook 'html-mode-hook '(lambda () (auto-fill-mode 0)))
+
+;; Output a message to show that file is loaded
+(message "Local config.el loaded")
