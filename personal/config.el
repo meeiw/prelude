@@ -14,6 +14,7 @@
 
 ;; disable line highlight
 ;; (global-hl-line-mode -1)
+
 ;; make the cursor blinking
 (blink-cursor-mode t)
 (setq ring-bell-function (lambda ()))
@@ -23,10 +24,10 @@
 (setq mac-right-command-modifier 'super)
 (setq ido-create-new-buffer 'prompt)
 
-(global-set-key (kbd "C-<") 'mark-previous-like-this)
-(global-set-key (kbd "C->") 'mark-next-like-this)
-(global-set-key (kbd "C-M-m") 'mark-more-like-this) ; like the other two, but takes an argument (negative is previous)
-(global-set-key (kbd "C-*") 'mark-all-like-this)
+(global-set-key (kbd "C-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
 ;; Fix large projects with projectile
 (setq projectile-enable-caching t)
@@ -40,6 +41,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(hl-line-face ((t (:background "color-22"))) t)
  '(whitespace-line ((t (:background "gray20" :foreground nil)))))
 
 ;; Remove auto-fill-mode for html
