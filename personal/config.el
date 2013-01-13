@@ -19,6 +19,10 @@
 (blink-cursor-mode t)
 (setq ring-bell-function (lambda ()))
 
+;; map fn-key to hyper
+;; http://irreal.org/blog/?p=1450
+(setq ns-function-modifier 'hyper)
+
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 (setq mac-right-option-modifier nil)
 (setq mac-right-command-modifier 'super)
