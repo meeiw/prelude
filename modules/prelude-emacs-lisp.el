@@ -1,6 +1,6 @@
 ;;; prelude-emacs-lisp.el --- Emacs Prelude: Nice config for Elisp programming.
 ;;
-;; Copyright © 2011-2013 Bozhidar Batsov
+;; Copyright © 2011-2018 Bozhidar Batsov
 ;;
 ;; Author: Bozhidar Batsov <bozhidar@batsov.com>
 ;; URL: https://github.com/bbatsov/prelude
@@ -34,6 +34,9 @@
 ;;; Code:
 
 (require 'prelude-lisp)
+(require 'crux)
+
+(prelude-require-packages '(elisp-slime-nav rainbow-mode))
 
 (defun prelude-recompile-elc-on-save ()
   "Recompile your elc when saving an elisp file."
@@ -50,7 +53,7 @@
   "Switch to default `ielm' buffer.
 Start `ielm' if it's not already running."
   (interactive)
-  (prelude-start-or-switch-to 'ielm "*ielm*"))
+  (crux-start-or-switch-to 'ielm "*ielm*"))
 
 (define-key emacs-lisp-mode-map (kbd "C-c C-z") 'prelude-visit-ielm)
 (define-key emacs-lisp-mode-map (kbd "C-c C-c") 'eval-defun)
@@ -65,7 +68,7 @@ Start `ielm' if it's not already running."
 (defun prelude-emacs-lisp-mode-defaults ()
   "Sensible defaults for `emacs-lisp-mode'."
   (run-hooks 'prelude-lisp-coding-hook)
-  (turn-on-eldoc-mode)
+  (eldoc-mode +1)
   (prelude-recompile-elc-on-save)
   (rainbow-mode +1)
   (setq mode-name "EL")
@@ -82,24 +85,23 @@ Start `ielm' if it's not already running."
 (defun prelude-ielm-mode-defaults ()
   "Sensible defaults for `ielm'."
   (run-hooks 'prelude-interactive-lisp-coding-hook)
-  (turn-on-eldoc-mode))
+  (eldoc-mode +1))
 
 (setq prelude-ielm-mode-hook 'prelude-ielm-mode-defaults)
 
 (add-hook 'ielm-mode-hook (lambda ()
                             (run-hooks 'prelude-ielm-mode-hook)))
 
-(eval-after-load "elisp-slime-nav"
-  '(diminish 'elisp-slime-nav-mode))
-(eval-after-load "rainbow-mode"
-  '(diminish 'rainbow-mode))
-(eval-after-load "eldoc"
-  '(diminish 'eldoc-mode))
+(with-eval-after-load "elisp-slime-nav"
+  (diminish 'elisp-slime-nav-mode))
+(with-eval-after-load "rainbow-mode"
+  (diminish 'rainbow-mode))
+(with-eval-after-load "eldoc"
+  (diminish 'eldoc-mode))
 
-(eval-after-load "ielm"
-  '(progn
-     (define-key ielm-map (kbd "M-(") (prelude-wrap-with "("))
-     (define-key ielm-map (kbd "M-\"") (prelude-wrap-with "\""))))
+(with-eval-after-load "ielm"
+  (define-key ielm-map (kbd "M-(") (prelude-wrap-with "("))
+  (define-key ielm-map (kbd "M-\"") (prelude-wrap-with "\"")))
 
 ;; enable elisp-slime-nav-mode
 (dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
